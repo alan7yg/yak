@@ -23,7 +23,7 @@ class OplogReader(id: String, db: String, collections: List[String])
                  (implicit val system: ActorSystem, val timeout: Timeout) {
   val actor = system.actorOf(
     Props(new OplogReaderActor(db, collections)),
-    "bootstrap-reader-" + id)
+    "oplog-reader-" + id)
 
   val scheduler = system.scheduler.schedule(50 milliseconds, 50 milliseconds, actor, "tick")
 
